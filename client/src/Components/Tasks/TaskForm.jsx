@@ -37,7 +37,7 @@ export function TaskForm() {
         <div className="w-full px-10">
             <form onSubmit={handleSubmit}>
                 <input
-                    className="bg-zinc-800 text-white w-full p-2 pl-4 rounded-lg mb-2"
+                    className="bg-zinc-800 text-white w-full p-4 rounded-lg mb-2"
                     type="text"
                     name="title"
                     placeholder="Write the title of the task"

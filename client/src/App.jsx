@@ -22,7 +22,7 @@ export function App() {
     return (
         <ApolloProvider client={client}>
             <Router>
-                <div className="container -auto h-screen flex items-center justify-center">
+                <div className="w-full h-screen flex items-center justify-center">
                     <Routes>
                         <Route path="/" element={<Navigate to="/projects" />} />
 

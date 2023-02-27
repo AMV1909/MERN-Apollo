@@ -35,7 +35,7 @@ export function ProjectDetails() {
     if (error) return <p>Error {error.message}</p>;
 
     return (
-        <div className="bg-zinc-900 rounded-lg shadow-lg shadow-black p-8 w-3/5">
+        <div className="bg-zinc-900 rounded-lg shadow-lg shadow-black p-8 w-3/5 max-w-5xl">
             <div className="mb-2 flex justify-between">
                 <button
                     className="w-28 p-2 hover:underline flex justify-between"
