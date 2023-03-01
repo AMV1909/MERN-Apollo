@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate, useParams } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 import { GET_PROJECT } from "../graphql/Projects";
 import { DELETE_PROJECT } from "../graphql/Projects";
@@ -26,9 +26,40 @@ export function ProjectDetails() {
     });
 
     const handleDelete = () => {
-        toast.info("Are you sure you want to delete this project?", {
-            icon: <AiOutlineDelete size={32} color="red" />,
-        });
+        toast(
+            (t) => (
+                <div className="my-5">
+                    <p className="text-center mb-5">
+                        Are you sure you want to delete this project?
+                    </p>
+                    <div className="flex justify-between mx-16">
+                        <button
+                            className="bg-red-500 hover:bg-red-600 font-bold py-2 px-4 rounded"
+                            onClick={() => {
+                                deleteProject({ variables: { id } });
+                                navigate("/projects");
+                                toast.dismiss(t.id);
+                            }}
+                        >
+                            Delete
+                        </button>
+                        <button
+                            className="bg-green-500 hover:bg-green-600 font-bold py-2 px-4 rounded"
+                            onClick={() => toast.dismiss(t.id)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            ),
+            {
+                duration: Infinity,
+                style: {
+                    background: "#101010",
+                    color: "#FFFFFF",
+                },
+            }
+        );
     };
 
     if (loading) return <p>Loading...</p>;
@@ -49,7 +80,7 @@ export function ProjectDetails() {
                     <p className="text-center">{description}</p>
                 </div>
                 <button
-                    className="w-24 p-2 hover:underline flex justify-between"
+                    className="w-24 p-2 hover:underline hover:text-red-500 flex justify-between"
                     onClick={() => handleDelete()}
                 >
                     Delete

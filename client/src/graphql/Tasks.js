@@ -5,6 +5,7 @@ export const GET_TASKS = gql`
         tasks(project: $project) {
             _id
             title
+            state
         }
     }
 `;
@@ -14,6 +15,17 @@ export const CREATE_TASK = gql`
         createTask(title: $title, project: $project) {
             _id
             title
+            state
+        }
+    }
+`;
+
+export const CHANGE_STATE_TASK = gql`
+    mutation changeStateTask($id: ID!, $state: Boolean!) {
+        changeStateTask(_id: $id, state: $state) {
+            _id
+            title
+            state
         }
     }
 `;

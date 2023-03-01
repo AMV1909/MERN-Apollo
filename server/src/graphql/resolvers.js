@@ -3,8 +3,6 @@ import taskSchema from "../models/Task.js";
 
 export const resolvers = {
     Query: {
-        hello: () => "Hello World!",
-
         // Projects
         projects: async () => {
             return await projectSchema
@@ -21,17 +19,10 @@ export const resolvers = {
         },
 
         // Tasks
-        tasks: async () => {
+        tasks: async (_, { project }) => {
             return await taskSchema
-                .find()
+                .find({ project })
                 .then((tasks) => tasks)
-                .catch((err) => err);
-        },
-
-        task: async (_, { _id }) => {
-            return await taskSchema
-                .findById(_id)
-                .then((task) => task)
                 .catch((err) => err);
         },
     },
@@ -41,13 +32,6 @@ export const resolvers = {
         createProject: async (_, { name, description }) => {
             return await projectSchema
                 .create({ name, description })
-                .then((project) => project)
-                .catch((err) => err);
-        },
-
-        updateProject: async (_, { _id, name, description }) => {
-            return await projectSchema
-                .findByIdAndUpdate(_id, { name, description })
                 .then((project) => project)
                 .catch((err) => err);
         },
@@ -79,17 +63,10 @@ export const resolvers = {
                 .catch((err) => err);
         },
 
-        updateTask: async (_, { _id, title, project }) => {
-            return await projectSchema
-                .findById(project)
-                .then(async (project) => {
-                    if (!project) throw new Error("Project not found");
-
-                    return await taskSchema
-                        .findByIdAndUpdate(_id, { title, project })
-                        .then((task) => task)
-                        .catch((err) => err);
-                })
+        changeStateTask: async (_, { _id, state }) => {
+            return await taskSchema
+                .findByIdAndUpdate(_id, { state })
+                .then((task) => task)
                 .catch((err) => err);
         },
 

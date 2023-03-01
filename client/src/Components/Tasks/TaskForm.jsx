@@ -45,7 +45,7 @@ export function TaskForm() {
                 />
                 <div className="w-full flex justify-center">
                     <button
-                        className="bg-sky-900 text-white p-2 px-4 my-2 rounded-lg disabled:bg-zinc-400"
+                        className="bg-blue-500 text-white p-2 px-4 my-2 rounded-lg disabled:bg-zinc-400"
                         disabled={!title || loading}
                     >
                         Add

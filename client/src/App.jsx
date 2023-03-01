@@ -5,12 +5,11 @@ import {
     Route,
     Navigate,
 } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 
 import { Projects } from "./Pages/Projects";
 import { ProjectDetails } from "./Pages/ProjectDetails";
 
-import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 const client = new ApolloClient({
@@ -35,7 +34,7 @@ export function App() {
                         <Route path="*" element={<h1>404</h1>} />
                     </Routes>
 
-                    <ToastContainer />
+                    <Toaster />
                 </div>
             </Router>
         </ApolloProvider>

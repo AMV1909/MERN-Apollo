@@ -11,6 +11,10 @@ const taskSchema = new Schema(
             ref: "Project",
             required: true,
         },
+        state: {
+            type: Boolean,
+            default: false,
+        },
     },
     {
         timestamps: true,
